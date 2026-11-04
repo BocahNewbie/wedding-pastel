@@ -18,7 +18,7 @@ function initApp() {
             if (coverTag && coverTag.parentNode) {
                 coupleTitleEl = document.createElement('h1');
                 coupleTitleEl.id = 'coupleTitle';
-                coupleTitleEl.className = 'font-serif text-3xl sm:text-4xl font-bold text-rose-50 leading-tight';
+                coupleTitleEl.className = 'font-serif text-3xl sm:text-4xl font-bold text-emerald-950 leading-tight';
                 coverTag.parentNode.parentNode.insertBefore(coupleTitleEl, coverTag.parentNode.nextSibling);
             }
         }
@@ -28,18 +28,18 @@ function initApp() {
 
         if (coupleTitleEl && CONFIG.couple) {
             coupleTitleEl.innerHTML = `
-                <span class="font-script text-4xl sm:text-5xl font-normal text-rose-200 block my-1">${namaPria}</span> 
-                <span class="text-amber-300 font-serif text-xl">&amp;</span> 
-                <span class="font-script text-4xl sm:text-5xl font-normal text-rose-200 block my-1">${namaWanita}</span>
+                <span class="font-script text-4xl sm:text-5xl font-normal text-emerald-800 block my-1">${namaPria}</span> 
+                <span class="text-amber-600 font-serif text-xl">&amp;</span> 
+                <span class="font-script text-4xl sm:text-5xl font-normal text-emerald-800 block my-1">${namaWanita}</span>
             `;
         }
 
         const heroCoupleTitleEl = document.getElementById('heroCoupleTitle');
         if (heroCoupleTitleEl && CONFIG.couple) {
             heroCoupleTitleEl.innerHTML = `
-                <span class="font-script text-4xl sm:text-6xl font-normal text-rose-200 block sm:inline my-1">${namaPria}</span> 
-                <span class="text-amber-300 font-serif text-xl sm:text-2xl mx-2">&amp;</span> 
-                <span class="font-script text-4xl sm:text-6xl font-normal text-rose-200 block sm:inline my-1">${namaWanita}</span>
+                <span class="font-script text-4xl sm:text-6xl font-normal text-emerald-800 block sm:inline my-1">${namaPria}</span> 
+                <span class="text-amber-600 font-serif text-xl sm:text-2xl mx-2">&amp;</span> 
+                <span class="font-script text-4xl sm:text-6xl font-normal text-emerald-800 block sm:inline my-1">${namaWanita}</span>
             `;
         }
         
@@ -74,7 +74,7 @@ function initApp() {
         }
     }
 
-    // 3. Listener Tombol Buka Undangan & Inisialisasi AOS Animasi
+    // 3. Listener Tombol Buka Undangan & AOS
     const openBtn = document.getElementById('btnOpen');
     if (openBtn) {
         openBtn.addEventListener('click', () => {
@@ -104,11 +104,11 @@ function initApp() {
         });
     }
 
-    // 4. Jalankan Timer & Event Listener Interaktif Scroll
+    // 4. Timer & Scroll Handler
     startCountdown();
     window.addEventListener('scroll', handleTimelineScroll);
 
-    // 5. Setup RSVP Form Handler
+    // 5. RSVP Form Handler
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
@@ -150,7 +150,6 @@ function initApp() {
     }
 }
 
-/* Render Kartu Rekening Bank di Dalam Amplop Digital */
 function renderBankCards() {
     const container = document.getElementById('giftCardsContainer');
     if (!container || !CONFIG.bankAccounts) return;
@@ -174,7 +173,6 @@ function renderBankCards() {
     `;
 }
 
-/* LOGIKA KELUAR-MASUK AMPLOP DIGITAL INTERAKTIF */
 function toggleEnvelope() {
     const wrapper = document.getElementById('envelopeWrapper');
     const hint = document.getElementById('envelopeHint');
@@ -190,7 +188,6 @@ function toggleEnvelope() {
     }
 }
 
-/* Efek Sparkle Emas saat Amplop Dibuka */
 function createSparkles() {
     const container = document.getElementById('sparklesContainer');
     if (!container) return;
@@ -208,7 +205,6 @@ function createSparkles() {
     }
 }
 
-/* Render Love Story Timeline Interaktif */
 function renderLoveStory() {
     const storyContainer = document.getElementById('story-container');
     if (!storyContainer || !CONFIG.loveStory) return;
@@ -227,20 +223,19 @@ function renderLoveStory() {
         card.setAttribute('data-aos-delay', (index * 150).toString());
 
         card.innerHTML = `
-            <div class="timeline-dot absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#14080b] border-2 border-amber-400/40 flex items-center justify-center shadow-sm transition-all duration-500">
-                <div class="w-1.5 h-1.5 rounded-full bg-rose-400 opacity-40 dot-inner transition-all duration-500"></div>
+            <div class="timeline-dot absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-[#f0fdf4] border-2 border-amber-600 flex items-center justify-center shadow-sm transition-all duration-500">
+                <div class="w-1.5 h-1.5 rounded-full bg-emerald-700 opacity-40 dot-inner transition-all duration-500"></div>
             </div>
-            <div class="bg-[#1f0d14] border border-amber-400/20 p-5 rounded-2xl shadow-md hover:shadow-lg transition-all space-y-2">
-                <span class="px-3 py-1 bg-[#2a1219] text-amber-300 border border-amber-400/30 text-xs font-bold rounded-full shadow-sm inline-block">${item.year}</span>
-                <h3 class="font-serif text-lg font-bold text-rose-50">${item.title}</h3>
-                <p class="text-xs text-rose-200/80 leading-relaxed pt-1">${item.description}</p>
+            <div class="bg-white/80 border border-amber-600/20 p-5 rounded-2xl shadow-md hover:shadow-lg transition-all space-y-2">
+                <span class="px-3 py-1 bg-emerald-100 text-amber-800 border border-amber-600/30 text-xs font-bold rounded-full shadow-sm inline-block">${item.year}</span>
+                <h3 class="font-serif text-lg font-bold text-emerald-950">${item.title}</h3>
+                <p class="text-xs text-emerald-900/80 leading-relaxed pt-1">${item.description}</p>
             </div>
         `;
         storyContainer.appendChild(card);
     });
 }
 
-/* Logika Interaktif Scroll Timeline (Garis Menyala Saat Di-scroll) */
 function handleTimelineScroll() {
     const container = document.getElementById('story-container');
     const progressBar = document.getElementById('timelineProgress');
@@ -273,7 +268,6 @@ function handleTimelineScroll() {
     }
 }
 
-/* Render Profil Mempelai */
 function renderProfiles() {
     const profileContainer = document.getElementById('profile-container');
     if (!profileContainer || !CONFIG.wedding) return;
@@ -282,41 +276,41 @@ function renderProfiles() {
 
     profileContainer.innerHTML = `
         <div class="text-center space-y-3 mb-8">
-            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-amber-300">Pasangan Mempelai</h2>
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold text-amber-700">Pasangan Mempelai</h2>
         </div>
         <div class="grid md:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-[#1f0d14] border border-amber-400/30 p-6 rounded-3xl text-center shadow-md hover:shadow-xl transition-all h-full flex flex-col justify-between space-y-4 relative overflow-hidden" data-aos="zoom-in-right">
+            <div class="bg-white/80 border border-amber-600/30 p-6 rounded-3xl text-center shadow-md hover:shadow-xl transition-all h-full flex flex-col justify-between space-y-4 relative overflow-hidden" data-aos="zoom-in-right">
                 <div class="space-y-4">
                     <div class="relative w-36 h-36 mx-auto">
-                        <img src="${p.foto}" class="w-full h-full rounded-full object-cover border-4 border-amber-400/80 shadow-lg">
-                        <div class="absolute inset-0 rounded-full border-2 border-rose-400/40 transform scale-105"></div>
+                        <img src="${p.foto}" class="w-full h-full rounded-full object-cover border-4 border-amber-500/80 shadow-lg">
+                        <div class="absolute inset-0 rounded-full border-2 border-emerald-600/40 transform scale-105"></div>
                     </div>
                     <div class="min-h-[72px] flex items-center justify-center">
-                        <h3 class="font-serif text-2xl font-bold text-rose-50 leading-snug">${p.nama}</h3>
+                        <h3 class="font-serif text-2xl font-bold text-emerald-950 leading-snug">${p.nama}</h3>
                     </div>
-                    <p class="text-xs text-rose-200/70 leading-relaxed">${p.orangTua}</p>
+                    <p class="text-xs text-emerald-800 leading-relaxed">${p.orangTua}</p>
                 </div>
                 <div class="pt-2">
-                    <a href="https://instagram.com/${p.instagram.replace('@','')}" target="_blank" class="inline-flex items-center space-x-2 text-xs text-amber-300 hover:text-amber-200 transition-colors bg-[#2a1219] px-3.5 py-1.5 rounded-full border border-amber-400/30">
-                        <i class="fa-brands fa-instagram text-amber-300"></i><span>${p.instagram}</span>
+                    <a href="https://instagram.com/${p.instagram.replace('@','')}" target="_blank" class="inline-flex items-center space-x-2 text-xs text-amber-800 hover:text-amber-600 transition-colors bg-emerald-50 px-3.5 py-1.5 rounded-full border border-amber-600/30">
+                        <i class="fa-brands fa-instagram text-amber-600"></i><span>${p.instagram}</span>
                     </a>
                 </div>
             </div>
 
-            <div class="bg-[#1f0d14] border border-amber-400/30 p-6 rounded-3xl text-center shadow-md hover:shadow-xl transition-all h-full flex flex-col justify-between space-y-4 relative overflow-hidden" data-aos="zoom-in-left">
+            <div class="bg-white/80 border border-amber-600/30 p-6 rounded-3xl text-center shadow-md hover:shadow-xl transition-all h-full flex flex-col justify-between space-y-4 relative overflow-hidden" data-aos="zoom-in-left">
                 <div class="space-y-4">
                     <div class="relative w-36 h-36 mx-auto">
-                        <img src="${w.foto}" class="w-full h-full rounded-full object-cover border-4 border-amber-400/80 shadow-lg">
-                        <div class="absolute inset-0 rounded-full border-2 border-rose-400/40 transform scale-105"></div>
+                        <img src="${w.foto}" class="w-full h-full rounded-full object-cover border-4 border-amber-500/80 shadow-lg">
+                        <div class="absolute inset-0 rounded-full border-2 border-emerald-600/40 transform scale-105"></div>
                     </div>
                     <div class="min-h-[72px] flex items-center justify-center">
-                        <h3 class="font-serif text-2xl font-bold text-rose-50 leading-snug">${w.nama}</h3>
+                        <h3 class="font-serif text-2xl font-bold text-emerald-950 leading-snug">${w.nama}</h3>
                     </div>
-                    <p class="text-xs text-rose-200/70 leading-relaxed">${w.orangTua}</p>
+                    <p class="text-xs text-emerald-800 leading-relaxed">${w.orangTua}</p>
                 </div>
                 <div class="pt-2">
-                    <a href="https://instagram.com/${w.instagram.replace('@','')}" target="_blank" class="inline-flex items-center space-x-2 text-xs text-amber-300 hover:text-amber-200 transition-colors bg-[#2a1219] px-3.5 py-1.5 rounded-full border border-amber-400/30">
-                        <i class="fa-brands fa-instagram text-amber-300"></i><span>${w.instagram}</span>
+                    <a href="https://instagram.com/${w.instagram.replace('@','')}" target="_blank" class="inline-flex items-center space-x-2 text-xs text-amber-800 hover:text-amber-600 transition-colors bg-emerald-50 px-3.5 py-1.5 rounded-full border border-amber-600/30">
+                        <i class="fa-brands fa-instagram text-amber-600"></i><span>${w.instagram}</span>
                     </a>
                 </div>
             </div>
@@ -324,26 +318,25 @@ function renderProfiles() {
     `;
 }
 
-/* Render Jadwal Acara */
 function renderSchedules() {
     const schedContainer = document.getElementById('schedule-container');
     if (!schedContainer || !CONFIG.schedules) return;
     schedContainer.innerHTML = '';
     CONFIG.schedules.forEach((item, index) => {
         const card = document.createElement('div');
-        card.className = 'bg-[#1f0d14] border border-amber-400/20 rounded-2xl overflow-hidden shadow-lg text-center space-y-4 group transition-all duration-300 hover:border-amber-400/50 flex flex-col justify-between';
+        card.className = 'bg-white/80 border border-amber-600/20 rounded-2xl overflow-hidden shadow-lg text-center space-y-4 group transition-all duration-300 hover:border-amber-600/50 flex flex-col justify-between';
         card.setAttribute('data-aos', index % 2 === 0 ? 'fade-right' : 'fade-left');
         card.innerHTML = `
             <div>
-                ${item.image ? `<div class="h-44 w-full overflow-hidden relative"><img src="${item.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"><div class="absolute inset-0 bg-gradient-to-t from-[#14080b] to-transparent"></div></div>` : ''}
+                ${item.image ? `<div class="h-44 w-full overflow-hidden relative"><img src="${item.image}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"><div class="absolute inset-0 bg-gradient-to-t from-emerald-950/40 to-transparent"></div></div>` : ''}
                 <div class="p-5 space-y-2">
-                    <h3 class="font-serif text-2xl font-bold text-amber-300">${item.name}</h3>
-                    <p class="text-rose-200 text-sm font-semibold border-y border-amber-400/20 py-1 inline-block px-3">${item.time}</p>
-                    <p class="text-xs text-rose-200/70 leading-relaxed">${item.location}<br>${item.address}</p>
+                    <h3 class="font-serif text-2xl font-bold text-amber-700">${item.name}</h3>
+                    <p class="text-emerald-900 text-sm font-semibold border-y border-amber-600/20 py-1 inline-block px-3">${item.time}</p>
+                    <p class="text-xs text-emerald-800 leading-relaxed">${item.location}<br>${item.address}</p>
                 </div>
             </div>
             <div class="p-5 pt-0">
-                <a href="${item.mapsUrl || '#'}" target="_blank" class="inline-flex items-center justify-center space-x-2 w-full py-2.5 bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 text-white font-bold text-xs rounded-xl hover:from-rose-400 hover:to-amber-400 transition-all shadow-md">
+                <a href="${item.mapsUrl || '#'}" target="_blank" class="inline-flex items-center justify-center space-x-2 w-full py-2.5 bg-gradient-to-r from-emerald-700 via-teal-600 to-amber-600 text-white font-bold text-xs rounded-xl hover:from-emerald-600 hover:to-amber-500 transition-all shadow-md">
                     <i class="fa-solid fa-map-location-dot text-xs"></i>
                     <span>Lokasi ${item.name}</span>
                 </a>
@@ -353,19 +346,18 @@ function renderSchedules() {
     });
 }
 
-/* Render Galeri Foto */
 function renderGallery() {
     const galleryGrid = document.getElementById('gallery-grid');
     if (!galleryGrid || !CONFIG.gallery) return;
     galleryGrid.innerHTML = '';
     CONFIG.gallery.forEach((url, idx) => {
         const wrap = document.createElement('div');
-        wrap.className = 'overflow-hidden rounded-2xl border border-amber-400/20 shadow-md group cursor-pointer relative';
+        wrap.className = 'overflow-hidden rounded-2xl border border-amber-600/20 shadow-md group cursor-pointer relative';
         wrap.setAttribute('data-aos', 'zoom-in');
         wrap.setAttribute('data-aos-delay', (idx * 100).toString());
         wrap.innerHTML = `
             <img src="${url}" class="w-full h-44 object-cover group-hover:scale-110 transition-transform duration-500">
-            <div class="absolute inset-0 bg-[#14080b]/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-300 text-xl">
+            <div class="absolute inset-0 bg-emerald-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-amber-400 text-xl">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
             </div>
         `;
@@ -384,7 +376,6 @@ function openGalleryModal(url) {
     }
 }
 
-/* Logika Hitung Mundur Waktu */
 function startCountdown() {
     if (!CONFIG.event || !CONFIG.event.targetDateIso) return;
     const targetTime = new Date(CONFIG.event.targetDateIso).getTime();
@@ -415,7 +406,6 @@ function startCountdown() {
     updateTimer();
 }
 
-/* Logika Copy Rekening & Toast Notification */
 function copyToClipboard(elementId, bankName) {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -444,7 +434,6 @@ function showToast(message) {
     setTimeout(() => { toast.classList.remove("show"); }, 2500);
 }
 
-/* Logika Pemutar Audio Backsound */
 const playIconPath = "M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z";
 const pauseIconPath = "M6 19h4V5H6v14zm8-14v14h4V5h-4z";
 
@@ -479,43 +468,42 @@ function toggleMusic() {
     }
 }
 
-/* Mengambil Komentar RSVP */
 function fetchComments() {
     const commentsContainer = document.getElementById('comments-container');
     if (!commentsContainer) return;
     if (typeof CONFIG === 'undefined' || !CONFIG.scriptUrl || CONFIG.scriptUrl.includes("PASTER_URL")) {
-        commentsContainer.innerHTML = '<p class="text-xs text-rose-200/50 text-center">Belum ada ucapan tersimpan.</p>';
+        commentsContainer.innerHTML = '<p class="text-xs text-emerald-800/60 text-center">Belum ada ucapan tersimpan.</p>';
         return;
     }
 
-    commentsContainer.innerHTML = '<p class="text-xs text-amber-300 text-center">Memuat ucapan...</p>';
+    commentsContainer.innerHTML = '<p class="text-xs text-amber-700 text-center">Memuat ucapan...</p>';
 
     fetch(CONFIG.scriptUrl)
         .then(res => res.json())
         .then(data => {
             commentsContainer.innerHTML = '';
             if (!data || data.length === 0) {
-                commentsContainer.innerHTML = '<p class="text-xs text-rose-200/50 text-center">Belum ada ucapan. Jadilah yang pertama!</p>';
+                commentsContainer.innerHTML = '<p class="text-xs text-emerald-800/60 text-center">Belum ada ucapan. Jadilah yang pertama!</p>';
                 return;
             }
 
             data.forEach(item => {
                 const el = document.createElement('div');
-                el.className = 'bg-[#1f0d14] border border-amber-400/20 p-3.5 rounded-2xl text-left space-y-1 shadow-sm';
+                el.className = 'bg-white/80 border border-amber-600/20 p-3.5 rounded-2xl text-left space-y-1 shadow-sm';
                 el.innerHTML = `
                     <div class="flex justify-between items-center">
-                        <span class="font-bold text-amber-300 text-sm">${escapeHtml(item.name)}</span>
-                        <span class="text-[10px] px-2 py-0.5 rounded-full ${item.status === 'Hadir' ? 'bg-[#2a1219] text-amber-300 border border-amber-400/30' : 'bg-[#14080b] text-rose-200/60'}">${item.status}</span>
+                        <span class="font-bold text-amber-700 text-sm">${escapeHtml(item.name)}</span>
+                        <span class="text-[10px] px-2 py-0.5 rounded-full ${item.status === 'Hadir' ? 'bg-emerald-100 text-emerald-800 border border-emerald-600/30' : 'bg-slate-100 text-slate-600'}">${item.status}</span>
                     </div>
-                    <p class="text-xs text-rose-100">${escapeHtml(item.message)}</p>
-                    <span class="text-[9px] text-rose-200/50 block pt-1">${item.date || ''}</span>
+                    <p class="text-xs text-slate-800">${escapeHtml(item.message)}</p>
+                    <span class="text-[9px] text-emerald-800/60 block pt-1">${item.date || ''}</span>
                 `;
                 commentsContainer.appendChild(el);
             });
         })
         .catch(err => {
             console.error("Gagal memuat ucapan:", err);
-            commentsContainer.innerHTML = '<p class="text-xs text-red-400 text-center">Gagal memuat ucapan.</p>';
+            commentsContainer.innerHTML = '<p class="text-xs text-red-500 text-center">Gagal memuat ucapan.</p>';
         });
 }
 
