@@ -18,7 +18,7 @@ html {
     background: #d97706;
 }
 
-/* BACKGROUND UTAMA - Soft Pastel Blue & Natural Mist */
+/* BACKGROUND UTAMA */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #bae6fd 100%);
@@ -41,9 +41,7 @@ h1, h2, h3, .font-serif {
     font-family: 'Great Vibes', cursive;
 }
 
-/* ==========================================
-   EFEK DAUN TERATAI / LEAF FALLING ANIMATION
-   ========================================== */
+/* EFEK DAUN TERATAI BERTEBARAN */
 #falling-leaves-container {
     position: fixed;
     top: 0;
@@ -66,23 +64,13 @@ h1, h2, h3, .font-serif {
 }
 
 @keyframes leafFall {
-    0% {
-        transform: translateY(0) rotate(0deg) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.8;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(105vh) rotate(360deg) translateX(50px);
-        opacity: 0;
-    }
+    0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(105vh) rotate(360deg) translateX(50px); opacity: 0; }
 }
 
-/* KARTU SECTION ORGANIC LEAF ARCH */
+/* KARTU SECTION ORGANIC ARCH */
 .neon-arch-card {
     background: rgba(240, 253, 244, 0.92);
     border: 1.5px solid rgba(217, 119, 6, 0.4);
@@ -93,7 +81,6 @@ h1, h2, h3, .font-serif {
         0 20px 40px -15px rgba(15, 23, 42, 0.12),
         0 0 20px rgba(16, 185, 129, 0.15);
     transition: all 0.4s ease;
-    overflow: hidden;
     backdrop-filter: blur(8px);
 }
 
@@ -107,37 +94,95 @@ h1, h2, h3, .font-serif {
     z-index: 1;
 }
 
-.neon-arch-card:hover {
-    border-color: rgba(217, 119, 6, 0.7);
-    box-shadow: 
-        0 25px 50px -12px rgba(15, 23, 42, 0.18),
-        0 0 25px rgba(217, 119, 6, 0.2);
-}
-
-/* ORNAMEN DAUN TERATAI CORNER */
-.floral-corner {
+/* ==========================================
+   EFEK DAUN TERATAI MENJALAR DI BAGIAN LUAR BOX
+   ========================================== */
+.vine-border-container {
     position: absolute;
-    color: #d97706;
-    font-size: 1.5rem;
-    z-index: 2;
+    inset: -12px;
     pointer-events: none;
+    z-index: 20;
+}
+
+.vine-node {
+    position: absolute;
+    color: #15803d;
+    font-size: 1.1rem;
+    filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.25));
     transition: transform 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.2));
 }
 
-.floral-corner.top-left {
-    top: 14px;
-    left: 16px;
-    transform: rotate(-30deg);
+.vine-node.gold { color: #d97706; }
+
+/* Posisi Daun Menjalar Sepanjang Pinggiran Luar */
+.vine-top-1 { top: -6px; left: 15%; transform: rotate(-20deg); }
+.vine-top-2 { top: -8px; right: 20%; transform: rotate(15deg); }
+.vine-bottom-1 { bottom: -6px; left: 25%; transform: rotate(160deg); }
+.vine-bottom-2 { bottom: -8px; right: 18%; transform: rotate(-140deg); }
+
+.vine-left-1 { top: 30%; left: -8px; transform: rotate(-80deg); }
+.vine-left-2 { top: 70%; left: -8px; transform: rotate(-110deg); }
+.vine-right-1 { top: 35%; right: -8px; transform: rotate(80deg); }
+.vine-right-2 { top: 75%; right: -8px; transform: rotate(100deg); }
+
+/* ==========================================
+   JEMBATAN SULUR DAUN MENJALAR ANTAR SECTION
+   ========================================== */
+.section-bridge {
+    position: relative;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.floral-corner.bottom-right {
-    bottom: 14px;
-    right: 16px;
-    transform: rotate(150deg);
+/* Garis Sulur Utama */
+.section-bridge::before {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #15803d 0%, #d97706 50%, #166534 100%);
+    box-shadow: 0 0 6px rgba(217, 119, 6, 0.3);
 }
 
-/* AMPLOP DIGITAL BOTANICAL NATURAL & GOLD */
+/* Sulur Daun Menjalar di Garis Penghubung */
+.vine-bridge-leaf {
+    position: absolute;
+    color: #15803d;
+    font-size: 0.95rem;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.vine-bridge-leaf.left-side { left: calc(50% - 14px); transform: rotate(-45deg); }
+.vine-bridge-leaf.right-side { right: calc(50% - 14px); transform: rotate(45deg); }
+
+.vine-bridge-leaf.top-pos { top: 15%; }
+.vine-bridge-leaf.bottom-pos { bottom: 15%; }
+
+.floating-bridge-love {
+    position: absolute;
+    background: #f0fdf4;
+    border: 1.5px solid #d97706;
+    color: #15803d;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+    animation: floatLeaf 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes floatLeaf {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(12deg); }
+}
+
+/* AMPLOP DIGITAL */
 .envelope-wrapper {
     position: relative;
     width: 100%;
@@ -156,14 +201,10 @@ h1, h2, h3, .font-serif {
     transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.envelope-wrapper.is-open .envelope-box {
-    height: 520px;
-}
+.envelope-wrapper.is-open .envelope-box { height: 520px; }
 
 @media (min-width: 640px) {
-    .envelope-wrapper.is-open .envelope-box {
-        height: 340px;
-    }
+    .envelope-wrapper.is-open .envelope-box { height: 340px; }
 }
 
 .envelope-back {
@@ -195,9 +236,7 @@ h1, h2, h3, .font-serif {
 }
 
 @media (min-width: 640px) {
-    .envelope-wrapper.is-open .envelope-cards-stage {
-        transform: translateY(-170px);
-    }
+    .envelope-wrapper.is-open .envelope-cards-stage { transform: translateY(-170px); }
 }
 
 .envelope-pocket {
@@ -213,9 +252,7 @@ h1, h2, h3, .font-serif {
 
 .envelope-flap {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 120px;
     background: linear-gradient(180deg, #15803d 0%, #166534 100%);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
@@ -232,37 +269,27 @@ h1, h2, h3, .font-serif {
 
 .wax-seal {
     position: absolute;
-    bottom: 8px;
-    left: 50%;
+    bottom: 8px; left: 50%;
     transform: translateX(-50%);
-    width: 38px;
-    height: 38px;
+    width: 38px; height: 38px;
     background: radial-gradient(circle, #f59e0b 0%, #b45309 100%);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ffffff;
-    font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    color: #ffffff; font-size: 0.9rem;
     box-shadow: 0 4px 10px rgba(180, 83, 9, 0.4);
     transition: opacity 0.4s ease;
 }
 
-.envelope-wrapper.is-open .wax-seal {
-    opacity: 0;
-}
+.envelope-wrapper.is-open .wax-seal { opacity: 0; }
 
 .sparkles-container {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 10;
+    position: absolute; inset: 0;
+    pointer-events: none; z-index: 10;
 }
 
 .sparkle-particle {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 6px; height: 6px;
     background: #f59e0b;
     border-radius: 50%;
     box-shadow: 0 0 10px #f59e0b;
@@ -275,26 +302,17 @@ h1, h2, h3, .font-serif {
 }
 
 /* TIMELINE KISAH CINTA */
-.interactive-timeline {
-    position: relative;
-}
+.interactive-timeline { position: relative; }
 
 .timeline-line-bg {
-    position: absolute;
-    left: -24px;
-    top: 10px;
-    bottom: 10px;
-    width: 2px;
-    background: rgba(217, 119, 6, 0.2);
+    position: absolute; left: -24px; top: 10px; bottom: 10px;
+    width: 2px; background: rgba(217, 119, 6, 0.2);
     border-radius: 9999px;
 }
 
 .timeline-line-progress {
-    position: absolute;
-    left: -24px;
-    top: 10px;
-    width: 2px;
-    height: 0%;
+    position: absolute; left: -24px; top: 10px;
+    width: 2px; height: 0%;
     background: linear-gradient(to bottom, #d97706, #166534);
     box-shadow: 0 0 8px rgba(217, 119, 6, 0.5);
     border-radius: 9999px;
@@ -312,67 +330,20 @@ h1, h2, h3, .font-serif {
     opacity: 1 !important;
 }
 
-/* GARIS PENGHUBUNG DAUN TERATAI DI TIAP SECTION */
-.section-bridge {
-    position: relative;
-    height: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.section-bridge::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(217, 119, 6, 0.3), rgba(22, 101, 52, 0.3));
-}
-
-.floating-bridge-love {
-    position: absolute;
-    background: #f0fdf4;
-    border: 1.5px solid #d97706;
-    color: #15803d;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
-    animation: floatLeaf 3s ease-in-out infinite;
-    z-index: 10;
-}
-
-@keyframes floatLeaf {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-6px) rotate(12deg); }
-}
-
 .neon-credit {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
     background: linear-gradient(135deg, #0284c7 0%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.btn-shimmer {
-    position: relative;
-    overflow: hidden;
-}
+.btn-shimmer { position: relative; overflow: hidden; }
 
 .btn-shimmer::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    content: ''; position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
     background: linear-gradient(
         60deg,
         transparent 30%,
@@ -383,112 +354,64 @@ h1, h2, h3, .font-serif {
     animation: shimmer 5s infinite;
 }
 
-@keyframes shimmer {
-    100% {
-        transform: rotate(30deg) translateX(100%);
-    }
-}
+@keyframes shimmer { 100% { transform: rotate(30deg) translateX(100%); } }
 
 /* KARTU REKENING BANK */
 .gift-card {
     background: rgba(255, 255, 255, 0.95);
     border: 1.5px solid rgba(217, 119, 6, 0.35);
-    border-radius: 1.25rem;
-    padding: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 1.25rem; padding: 1.25rem;
+    display: flex; flex-direction: column; align-items: center;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
-.gift-card:hover {
-    border-color: rgba(217, 119, 6, 0.7);
-}
+.gift-card:hover { border-color: rgba(217, 119, 6, 0.7); }
 
 .bank-badge {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #b45309;
-    letter-spacing: 1px;
-    margin-bottom: 0.5rem;
+    font-size: 1rem; font-weight: 700; color: #b45309;
+    letter-spacing: 1px; margin-bottom: 0.5rem;
 }
 
 .account-number {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #0f172a;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.25rem;
-    font-family: monospace;
+    font-size: 1.15rem; font-weight: 700; color: #0f172a;
+    letter-spacing: 1.5px; margin-bottom: 0.25rem; font-family: monospace;
 }
 
-.account-holder {
-    font-size: 0.75rem;
-    color: #166534;
-    margin-bottom: 1rem;
-}
+.account-holder { font-size: 0.75rem; color: #166534; margin-bottom: 1rem; }
 
 .btn-copy {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    width: 100%;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 0.5rem; width: 100%;
     background: rgba(217, 119, 6, 0.1);
     border: 1px solid rgba(217, 119, 6, 0.4);
-    color: #b45309;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: all 0.25s ease;
+    color: #b45309; font-size: 0.8rem; font-weight: 600;
+    padding: 0.5rem 1rem; border-radius: 9999px;
+    cursor: pointer; transition: all 0.25s ease;
 }
 
 .btn-copy:hover {
-    background: #d97706;
-    color: #ffffff;
-    border-color: transparent;
+    background: #d97706; color: #ffffff; border-color: transparent;
 }
 
-.btn-copy svg {
-    width: 14px;
-    height: 14px;
-    fill: currentColor;
-}
+.btn-copy svg { width: 14px; height: 14px; fill: currentColor; }
 
 /* TOMBOL MUSIK FLOATING */
 .music-control-btn {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    width: 46px; height: 46px; border-radius: 50%;
     background: rgba(240, 253, 244, 0.95);
     border: 1.5px solid rgba(217, 119, 6, 0.5);
-    color: #15803d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    z-index: 9999;
-    transition: all 0.3s ease;
+    color: #15803d; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    z-index: 9999; transition: all 0.3s ease;
 }
 
 .music-control-btn:hover {
-    transform: scale(1.1);
-    background: #d97706;
-    color: #ffffff;
+    transform: scale(1.1); background: #d97706; color: #ffffff;
 }
 
-.music-control-btn svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-}
+.music-control-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
 /* FOOTER TRANSPARANCY 20% & BACKDROP BLUR */
 footer {
@@ -499,24 +422,14 @@ footer {
 
 /* Toast Notification */
 .toast {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
+    position: fixed; bottom: 2rem; left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: #166534;
-    color: #ffffff;
-    padding: 0.65rem 1.5rem;
-    border-radius: 9999px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    background: #166534; color: #ffffff;
+    padding: 0.65rem 1.5rem; border-radius: 9999px;
+    font-size: 0.8rem; font-weight: 700;
     box-shadow: 0 10px 25px rgba(22, 101, 52, 0.3);
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-    pointer-events: none;
-    z-index: 9999;
+    opacity: 0; transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    pointer-events: none; z-index: 9999;
 }
 
-.toast.show {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
