@@ -1,9 +1,37 @@
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
+    initFallingLeaves();
 });
 
+function initFallingLeaves() {
+    const container = document.getElementById('falling-leaves-container');
+    if (!container) return;
+
+    const leafIcons = ['fa-leaf', 'fa-seedling', 'fa-plant-wilt'];
+    const leafCount = 18; // Jumlah daun melayang di layar
+
+    for (let i = 0; i < leafCount; i++) {
+        const leaf = document.createElement('i');
+        const randomIcon = leafIcons[Math.floor(Math.random() * leafIcons.length)];
+        
+        leaf.className = `fa-solid ${randomIcon} falling-leaf`;
+        
+        // Randomize posisi horizontal, kecepatan, dan skala daun
+        const startLeft = Math.random() * 100; // Posisi horizontal (%)
+        const animationDuration = Math.random() * 7 + 6; // Durasi jatuh 6s - 13s
+        const animationDelay = Math.random() * 8; // Delay acak
+        const leafSize = Math.random() * 0.8 + 0.8; // Ukuran bervariasi
+
+        leaf.style.left = `${startLeft}%`;
+        leaf.style.animationDuration = `${animationDuration}s`;
+        leaf.style.animationDelay = `${animationDelay}s`;
+        leaf.style.fontSize = `${leafSize}rem`;
+
+        container.appendChild(leaf);
+    }
+}
+
 function initApp() {
-    // 1. Inisialisasi Data dari config.js
     if (typeof CONFIG !== 'undefined') {
         if (CONFIG.backgrounds && CONFIG.backgrounds.globalPattern) {
             document.body.style.backgroundImage = `url('${CONFIG.backgrounds.globalPattern}')`;
@@ -62,7 +90,6 @@ function initApp() {
         fetchComments();
     }
 
-    // 2. Parse Parameter Nama Tamu dari Query String (?to=NamaTamu)
     const urlParams = new URLSearchParams(window.location.search);
     const guest = urlParams.get('to');
     const guestNameEl = document.getElementById('guestName');
@@ -74,7 +101,6 @@ function initApp() {
         }
     }
 
-    // 3. Listener Tombol Buka Undangan & AOS
     const openBtn = document.getElementById('btnOpen');
     if (openBtn) {
         openBtn.addEventListener('click', () => {
@@ -104,11 +130,9 @@ function initApp() {
         });
     }
 
-    // 4. Timer & Scroll Handler
     startCountdown();
     window.addEventListener('scroll', handleTimelineScroll);
 
-    // 5. RSVP Form Handler
     const rsvpForm = document.getElementById('rsvp-form');
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', (e) => {
