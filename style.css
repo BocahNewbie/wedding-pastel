@@ -3,26 +3,26 @@ html {
     scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar Soft Red & Gold */
+/* Custom Scrollbar Pastel Blue & Gold */
 ::-webkit-scrollbar {
     width: 6px;
 }
 ::-webkit-scrollbar-track {
-    background: #14080b;
+    background: #e0f2fe;
 }
 ::-webkit-scrollbar-thumb {
-    background: #38131d;
+    background: #15803d;
     border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #f43f5e;
+    background: #d97706;
 }
 
-/* BACKGROUND UTAMA */
+/* BACKGROUND UTAMA - Soft Pastel Blue & Natural Mist */
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #14080b;
-    color: #fdf2f4;
+    background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 50%, #bae6fd 100%);
+    color: #1e3a8a;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -40,61 +40,63 @@ h1, h2, h3, .font-serif {
     font-family: 'Great Vibes', cursive;
 }
 
-/* KARTU ESTETIK FLORAL ARCH CARD */
+/* KARTU SECTION ORGANIC LEAF ARCH (BENTUK ORGANIK ASIMETRIS) */
 .neon-arch-card {
-    background: rgba(26, 12, 17, 0.94);
-    border: 1.5px solid rgba(251, 191, 36, 0.35);
-    border-radius: 2rem 0.5rem 2rem 0.5rem;
-    color: #fdf2f4;
+    background: rgba(240, 253, 244, 0.92);
+    border: 1.5px solid rgba(217, 119, 6, 0.4);
+    border-radius: 2.5rem 0.75rem 2.5rem 0.75rem;
+    color: #166534;
     position: relative;
     box-shadow: 
-        0 25px 50px -15px rgba(0, 0, 0, 0.7),
-        0 0 25px rgba(244, 63, 94, 0.1);
+        0 20px 40px -15px rgba(15, 23, 42, 0.12),
+        0 0 20px rgba(16, 185, 129, 0.15);
     transition: all 0.4s ease;
     overflow: hidden;
+    backdrop-filter: blur(8px);
 }
 
 .neon-arch-card::before {
     content: '';
     position: absolute;
-    inset: 8px;
-    border: 1px dashed rgba(251, 191, 36, 0.25);
-    border-radius: 1.75rem 0.35rem 1.75rem 0.35rem;
+    inset: 10px;
+    border: 1px dashed rgba(217, 119, 6, 0.3);
+    border-radius: 2.25rem 0.5rem 2.25rem 0.5rem;
     pointer-events: none;
     z-index: 1;
 }
 
 .neon-arch-card:hover {
-    border-color: rgba(251, 191, 36, 0.6);
+    border-color: rgba(217, 119, 6, 0.7);
     box-shadow: 
-        0 30px 60px -12px rgba(0, 0, 0, 0.8),
-        0 0 30px rgba(251, 191, 36, 0.15);
+        0 25px 50px -12px rgba(15, 23, 42, 0.18),
+        0 0 25px rgba(217, 119, 6, 0.2);
 }
 
-/* ORNAMEN BUNGA DI SUDUT BOX */
+/* ORNAMEN DAUN TERATAI / LOTUS CORNER */
 .floral-corner {
     position: absolute;
-    color: rgba(251, 191, 36, 0.45);
-    font-size: 1.4rem;
+    color: #d97706;
+    font-size: 1.5rem;
     z-index: 2;
     pointer-events: none;
     transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(217, 119, 6, 0.2));
 }
 
 .floral-corner.top-left {
-    top: 12px;
-    left: 14px;
-    transform: rotate(-45deg);
+    top: 14px;
+    left: 16px;
+    transform: rotate(-30deg);
 }
 
 .floral-corner.bottom-right {
-    bottom: 12px;
-    right: 14px;
-    transform: rotate(135deg);
+    bottom: 14px;
+    right: 16px;
+    transform: rotate(150deg);
 }
 
 /* ==========================================
-   MEKANISME AMPLOP DIGITAL INTERAKTIF SMOOTH
+   AMPOLOP DIGITAL BOTANICAL NATURAL & GOLD
    ========================================== */
 .envelope-wrapper {
     position: relative;
@@ -110,32 +112,29 @@ h1, h2, h3, .font-serif {
     width: 100%;
     height: 220px;
     margin: 0 auto;
-    border-radius: 12px;
+    border-radius: 16px;
     transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Wadah Membesar Lebih Tinggi Saat Amplop Terbuka */
 .envelope-wrapper.is-open .envelope-box {
-    height: 520px; /* Ditinggikan agar muat kartu yang terangkat di mobile */
+    height: 520px;
 }
 
 @media (min-width: 640px) {
     .envelope-wrapper.is-open .envelope-box {
-        height: 340px; /* Ditinggikan untuk tampilan 2 kolom desktop */
+        height: 340px;
     }
 }
 
-/* Dinding Belakang Amplop */
 .envelope-back {
     position: absolute;
     inset: 0;
-    background: #1a0a10;
-    border-radius: 12px;
-    border: 1px solid rgba(251, 191, 36, 0.25);
+    background: #14532d;
+    border-radius: 16px;
+    border: 1px solid rgba(217, 119, 6, 0.4);
     z-index: 1;
 }
 
-/* WADAH KARTU REKENING (Tersimpan 100% di Dalam Saku) */
 .envelope-cards-stage {
     position: absolute;
     left: 10px;
@@ -148,9 +147,8 @@ h1, h2, h3, .font-serif {
     transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
 }
 
-/* KARTU MELUNCUR KELUAR LEBIH TINGGI KE ATAS */
 .envelope-wrapper.is-open .envelope-cards-stage {
-    transform: translateY(-190px); /* Terangkat lebih tinggi di mobile */
+    transform: translateY(-190px);
     opacity: 1;
     pointer-events: auto;
     transition-delay: 0.3s;
@@ -158,59 +156,55 @@ h1, h2, h3, .font-serif {
 
 @media (min-width: 640px) {
     .envelope-wrapper.is-open .envelope-cards-stage {
-        transform: translateY(-170px); /* Terangkat lebih tinggi di desktop */
+        transform: translateY(-170px);
     }
 }
 
-/* Saku Depan Amplop */
 .envelope-pocket {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, #2b0f19 0%, #1c0910 100%);
+    background: linear-gradient(135deg, #166534 0%, #0f3923 100%);
     clip-path: polygon(0 35%, 50% 65%, 100% 35%, 100% 100%, 0 100%);
-    border-radius: 0 0 12px 12px;
-    border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+    border-radius: 0 0 16px 16px;
+    border-bottom: 1px solid rgba(217, 119, 6, 0.5);
     z-index: 3;
-    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.25);
 }
 
-/* Penutup Lipatan Atas (Flap) */
 .envelope-flap {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 120px;
-    background: linear-gradient(180deg, #381320 0%, #2b0f19 100%);
+    background: linear-gradient(180deg, #15803d 0%, #166534 100%);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top center;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.6s step-end;
     z-index: 4;
 }
 
-/* Animasi Flap Membuka 180 Derajat */
 .envelope-wrapper.is-open .envelope-flap {
     transform: rotateX(180deg);
     z-index: 1;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.1s step-start;
 }
 
-/* Segel Lilin (Wax Seal) */
 .wax-seal {
     position: absolute;
     bottom: 8px;
     left: 50%;
     transform: translateX(-50%);
-    width: 36px;
-    height: 36px;
-    background: radial-gradient(circle, #fbbf24 0%, #d97706 100%);
+    width: 38px;
+    height: 38px;
+    background: radial-gradient(circle, #f59e0b 0%, #b45309 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #14080b;
+    color: #ffffff;
     font-size: 0.9rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 10px rgba(180, 83, 9, 0.4);
     transition: opacity 0.4s ease;
 }
 
@@ -218,7 +212,6 @@ h1, h2, h3, .font-serif {
     opacity: 0;
 }
 
-/* Sparkles Emas Animasi */
 .sparkles-container {
     position: absolute;
     inset: 0;
@@ -230,9 +223,9 @@ h1, h2, h3, .font-serif {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #fbbf24;
+    background: #f59e0b;
     border-radius: 50%;
-    box-shadow: 0 0 10px #fbbf24;
+    box-shadow: 0 0 10px #f59e0b;
     animation: sparkleFly 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
@@ -241,7 +234,7 @@ h1, h2, h3, .font-serif {
     100% { transform: translateY(-120px) scale(0); opacity: 0; }
 }
 
-/* TIMELINE KISAH CINTA INTERAKTIF */
+/* TIMELINE KISAH CINTA */
 .interactive-timeline {
     position: relative;
 }
@@ -252,7 +245,7 @@ h1, h2, h3, .font-serif {
     top: 10px;
     bottom: 10px;
     width: 2px;
-    background: rgba(251, 191, 36, 0.15);
+    background: rgba(217, 119, 6, 0.2);
     border-radius: 9999px;
 }
 
@@ -262,27 +255,27 @@ h1, h2, h3, .font-serif {
     top: 10px;
     width: 2px;
     height: 0%;
-    background: linear-gradient(to bottom, #fbbf24, #f43f5e);
-    box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+    background: linear-gradient(to bottom, #d97706, #166534);
+    box-shadow: 0 0 8px rgba(217, 119, 6, 0.5);
     border-radius: 9999px;
     transition: height 0.1s linear;
 }
 
 .timeline-dot.active-dot {
-    border-color: #fbbf24 !important;
-    box-shadow: 0 0 12px rgba(251, 191, 36, 0.9);
+    border-color: #d97706 !important;
+    box-shadow: 0 0 10px rgba(217, 119, 6, 0.6);
     transform: scale(1.2);
 }
 
 .timeline-dot.active-dot .dot-inner {
-    background-color: #fbbf24 !important;
+    background-color: #d97706 !important;
     opacity: 1 !important;
 }
 
-/* JEMBATAN / GARIS PENGHUBUNG ANTAR SECTION */
+/* GARIS PENGHUBUNG DAUN TERATAI DI TIAP SECTION */
 .section-bridge {
     position: relative;
-    height: 60px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -293,43 +286,41 @@ h1, h2, h3, .font-serif {
     position: absolute;
     width: 2px;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(251, 191, 36, 0.4), rgba(244, 63, 94, 0.4));
+    background: linear-gradient(to bottom, rgba(217, 119, 6, 0.3), rgba(22, 101, 52, 0.3));
 }
 
 .floating-bridge-love {
     position: absolute;
-    background: #14080b;
-    border: 1px solid rgba(251, 191, 36, 0.5);
-    color: #fde047;
-    width: 32px;
-    height: 32px;
+    background: #f0fdf4;
+    border: 1.5px solid #d97706;
+    color: #15803d;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.85rem;
-    box-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
-    animation: floatLove 3s ease-in-out infinite;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+    animation: floatLeaf 3s ease-in-out infinite;
     z-index: 10;
 }
 
-@keyframes floatLove {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-5px) scale(1.1); }
+@keyframes floatLeaf {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-6px) rotate(12deg); }
 }
 
-/* EFEK TULISAN SOFT GOLD & ROSE */
 .neon-credit {
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    background: linear-gradient(135deg, #fda4af 0%, #fde047 100%);
+    background: linear-gradient(135deg, #0284c7 0%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-/* KILAU TOMBOL HALUS */
 .btn-shimmer {
     position: relative;
     overflow: hidden;
@@ -345,7 +336,7 @@ h1, h2, h3, .font-serif {
     background: linear-gradient(
         60deg,
         transparent 30%,
-        rgba(255, 255, 255, 0.15) 50%,
+        rgba(255, 255, 255, 0.3) 50%,
         transparent 70%
     );
     transform: rotate(30deg) translateX(-100%);
@@ -360,25 +351,25 @@ h1, h2, h3, .font-serif {
 
 /* KARTU REKENING BANK */
 .gift-card {
-    background: rgba(31, 13, 20, 0.95);
-    border: 1.5px solid rgba(251, 191, 36, 0.35);
+    background: rgba(255, 255, 255, 0.95);
+    border: 1.5px solid rgba(217, 119, 6, 0.35);
     border-radius: 1.25rem;
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
 .gift-card:hover {
-    border-color: rgba(251, 191, 36, 0.6);
+    border-color: rgba(217, 119, 6, 0.7);
 }
 
 .bank-badge {
     font-size: 1rem;
     font-weight: 700;
-    color: #fde047;
+    color: #b45309;
     letter-spacing: 1px;
     margin-bottom: 0.5rem;
 }
@@ -386,7 +377,7 @@ h1, h2, h3, .font-serif {
 .account-number {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #fdf2f4;
+    color: #0f172a;
     letter-spacing: 1.5px;
     margin-bottom: 0.25rem;
     font-family: monospace;
@@ -394,7 +385,7 @@ h1, h2, h3, .font-serif {
 
 .account-holder {
     font-size: 0.75rem;
-    color: #fda4af;
+    color: #166534;
     margin-bottom: 1rem;
 }
 
@@ -404,9 +395,9 @@ h1, h2, h3, .font-serif {
     justify-content: center;
     gap: 0.5rem;
     width: 100%;
-    background: rgba(251, 191, 36, 0.08);
-    border: 1px solid rgba(251, 191, 36, 0.3);
-    color: #fde047;
+    background: rgba(217, 119, 6, 0.1);
+    border: 1px solid rgba(217, 119, 6, 0.4);
+    color: #b45309;
     font-size: 0.8rem;
     font-weight: 600;
     padding: 0.5rem 1rem;
@@ -416,8 +407,8 @@ h1, h2, h3, .font-serif {
 }
 
 .btn-copy:hover {
-    background: #fde047;
-    color: #14080b;
+    background: #d97706;
+    color: #ffffff;
     border-color: transparent;
 }
 
@@ -427,30 +418,30 @@ h1, h2, h3, .font-serif {
     fill: currentColor;
 }
 
-/* TOMBOL MUSIK MENGAPUNG */
+/* TOMBOL MUSIK FLOATING */
 .music-control-btn {
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
-    width: 44px;
-    height: 44px;
+    width: 46px;
+    height: 46px;
     border-radius: 50%;
-    background: rgba(26, 12, 17, 0.95);
-    border: 1px solid rgba(251, 191, 36, 0.4);
-    color: #fde047;
+    background: rgba(240, 253, 244, 0.95);
+    border: 1.5px solid rgba(217, 119, 6, 0.5);
+    color: #15803d;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     z-index: 9999;
     transition: all 0.3s ease;
 }
 
 .music-control-btn:hover {
     transform: scale(1.1);
-    background: #fde047;
-    color: #14080b;
+    background: #d97706;
+    color: #ffffff;
 }
 
 .music-control-btn svg {
@@ -465,13 +456,13 @@ h1, h2, h3, .font-serif {
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
-    background: #fde047;
-    color: #14080b;
+    background: #166534;
+    color: #ffffff;
     padding: 0.65rem 1.5rem;
     border-radius: 9999px;
     font-size: 0.8rem;
     font-weight: 700;
-    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+    box-shadow: 0 10px 25px rgba(22, 101, 52, 0.3);
     opacity: 0;
     transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     pointer-events: none;
