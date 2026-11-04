@@ -413,12 +413,26 @@ h1, h2, h3, .font-serif {
 
 .music-control-btn svg { width: 20px; height: 20px; fill: currentColor; }
 
+/* EFEK GRADASI KHUSUS SECTION TERIMA KASIH */
+#sec-thanks .neon-arch-card {
+    background: linear-gradient(
+        to bottom, 
+        rgba(240, 253, 244, 0.25) 0%,   /* Transparan 25% di bagian atas */
+        rgba(255, 255, 255, 0.85) 65%, 
+        #ffffff 100%                   /* Putih Solid di bagian bawah */
+    ) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom-color: rgba(255, 255, 255, 0.9);
+}
+
 /* FOOTER TRANSPARANCY 20% & BACKDROP BLUR */
 footer {
     background: rgba(14, 5, 8, 0.20) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
 }
+
 
 /* Toast Notification */
 .toast {
