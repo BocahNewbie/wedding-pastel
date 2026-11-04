@@ -30,6 +30,7 @@ body {
     margin: 0;
     padding: 0;
     position: relative;
+    overflow-x: hidden;
 }
 
 h1, h2, h3, .font-serif {
@@ -40,7 +41,48 @@ h1, h2, h3, .font-serif {
     font-family: 'Great Vibes', cursive;
 }
 
-/* KARTU SECTION ORGANIC LEAF ARCH (BENTUK ORGANIK ASIMETRIS) */
+/* ==========================================
+   EFEK DAUN TERATAI / LEAF FALLING ANIMATION
+   ========================================== */
+#falling-leaves-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 40;
+    overflow: hidden;
+}
+
+.falling-leaf {
+    position: absolute;
+    top: -40px;
+    color: rgba(217, 119, 6, 0.65);
+    font-size: 1.2rem;
+    pointer-events: none;
+    animation: leafFall linear infinite;
+    filter: drop-shadow(0 2px 4px rgba(22, 101, 52, 0.15));
+}
+
+@keyframes leafFall {
+    0% {
+        transform: translateY(0) rotate(0deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(105vh) rotate(360deg) translateX(50px);
+        opacity: 0;
+    }
+}
+
+/* KARTU SECTION ORGANIC LEAF ARCH */
 .neon-arch-card {
     background: rgba(240, 253, 244, 0.92);
     border: 1.5px solid rgba(217, 119, 6, 0.4);
@@ -72,7 +114,7 @@ h1, h2, h3, .font-serif {
         0 0 25px rgba(217, 119, 6, 0.2);
 }
 
-/* ORNAMEN DAUN TERATAI / LOTUS CORNER */
+/* ORNAMEN DAUN TERATAI CORNER */
 .floral-corner {
     position: absolute;
     color: #d97706;
@@ -95,9 +137,7 @@ h1, h2, h3, .font-serif {
     transform: rotate(150deg);
 }
 
-/* ==========================================
-   AMPOLOP DIGITAL BOTANICAL NATURAL & GOLD
-   ========================================== */
+/* AMPLOP DIGITAL BOTANICAL NATURAL & GOLD */
 .envelope-wrapper {
     position: relative;
     width: 100%;
@@ -448,6 +488,13 @@ h1, h2, h3, .font-serif {
     width: 20px;
     height: 20px;
     fill: currentColor;
+}
+
+/* FOOTER TRANSPARANCY 20% & BACKDROP BLUR */
+footer {
+    background: rgba(14, 5, 8, 0.20) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 /* Toast Notification */
