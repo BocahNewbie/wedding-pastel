@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <base href="https://invitation-tiga.vercel.app/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Spesial Red & Gold</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=Great+Vibes&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- AOS CSS (Efek Scroll Melayang) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+    <!-- Linked External CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="selection:bg-rose-500 selection:text-white overflow-x-hidden">
+
+    <!-- COVER OVERLAY -->
+    <div id="sec-cover" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-cover bg-center bg-fixed transition-all duration-1000 ease-in-out">
+        <div class="absolute inset-0 bg-[#14080b]/85 backdrop-blur-md"></div>
+
+        <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-8 text-center space-y-6 my-auto">
+            <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+            <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+            <div class="flex items-center justify-center gap-2 text-amber-300 text-xs pt-1">
+                <i class="fa-solid fa-diamond text-[8px] text-amber-400"></i>
+                <span class="h-[1px] w-12 bg-amber-400/30"></span>
+                <span id="cover-title-tag" class="text-rose-100 font-semibold tracking-[0.25em] text-[11px] uppercase">The Wedding Of</span>
+                <span class="h-[1px] w-12 bg-amber-400/30"></span>
+                <i class="fa-solid fa-diamond text-[8px] text-amber-400"></i>
+            </div>
+            
+            <h1 id="coupleTitle" class="font-serif text-3xl sm:text-4xl font-bold text-rose-50 leading-tight"></h1>
+            
+            <div class="space-y-2 pt-2">
+                <p class="text-rose-200/80 text-xs italic">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <div class="bg-[#1f0d14] border border-amber-400/25 rounded-2xl p-3 backdrop-blur-sm">
+                    <span id="guestName" class="text-lg font-bold text-amber-300 capitalize">Tamu Undangan</span>
+                </div>
+            </div>
+
+            <button id="btnOpen" class="btn-shimmer w-full py-3.5 bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 hover:from-rose-400 hover:to-amber-400 rounded-full text-white font-bold text-xs tracking-widest uppercase shadow-xl shadow-rose-900/30 flex items-center justify-center space-x-2 transition-all duration-300 hover:scale-[1.02] active:scale-95">
+                <i class="fa-solid fa-envelope-open text-white"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO BACKGROUND -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="panahasmara.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-control-btn" id="musicBtn" onclick="toggleMusic()" aria-label="Toggle Music">
+        <svg viewBox="0 0 24 24">
+            <path id="iconPath" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+        </svg>
+    </button>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-1000 ease-in-out py-12 space-y-6">
+
+        <!-- HERO SECTION -->
+        <section id="sec-hero" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 text-center space-y-6 py-12">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="flex items-center justify-center gap-2 text-amber-300 text-xs">
+                    <i class="fa-solid fa-diamond text-[8px] text-amber-400"></i>
+                    <span class="h-[1px] w-8 bg-amber-400/30"></span>
+                    <p id="hero-tag" class="text-rose-100 tracking-[0.3em] text-[11px] uppercase font-semibold">The Wedding Of</p>
+                    <span class="h-[1px] w-8 bg-amber-400/30"></span>
+                    <i class="fa-solid fa-diamond text-[8px] text-amber-400"></i>
+                </div>
+
+                <h1 id="heroCoupleTitle" class="font-serif text-3xl sm:text-5xl font-bold text-rose-50 leading-tight"></h1>
+                <h2 id="eventDateText" class="text-amber-200/90 font-medium text-sm border-y border-amber-400/20 py-2 inline-block px-4"></h2>
+
+                <!-- COUNTDOWN -->
+                <div class="grid grid-cols-4 gap-2.5 pt-2">
+                    <div class="bg-[#1f0d14] border border-amber-400/20 p-2.5 rounded-2xl shadow-sm">
+                        <span id="days" class="block text-xl font-bold text-amber-300">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-rose-200/70">Hari</span>
+                    </div>
+                    <div class="bg-[#1f0d14] border border-amber-400/20 p-2.5 rounded-2xl shadow-sm">
+                        <span id="hours" class="block text-xl font-bold text-amber-300">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-rose-200/70">Jam</span>
+                    </div>
+                    <div class="bg-[#1f0d14] border border-amber-400/20 p-2.5 rounded-2xl shadow-sm">
+                        <span id="minutes" class="block text-xl font-bold text-amber-300">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-rose-200/70">Menit</span>
+                    </div>
+                    <div class="bg-[#1f0d14] border border-amber-400/20 p-2.5 rounded-2xl shadow-sm">
+                        <span id="seconds" class="block text-xl font-bold text-amber-300">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-rose-200/70">Detik</span>
+                    </div>
+                </div>
+
+                <div class="pt-4">
+                    <a href="#" target="_blank" rel="noopener noreferrer" id="btnCalendar" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-amber-400/40 text-amber-200 text-xs font-semibold hover:bg-amber-400 hover:text-[#14080b] transition-all">
+                        <i class="fa-regular fa-calendar-days"></i> Simpan di Kalender
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- QUOTE SECTION -->
+        <section id="sec-quote" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 text-center space-y-4">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <i class="fa-solid fa-quote-left text-3xl text-amber-400/40"></i>
+                <p id="weddingQuote" class="font-serif italic text-sm sm:text-base text-rose-100/90 leading-relaxed"></p>
+                <span class="block text-xs text-amber-300 font-bold tracking-widest uppercase pt-2">Q.S. Ar-Rum: 21</span>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- PROFIL MEMPELAI SECTION -->
+        <section id="sec-mempelai" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 space-y-8">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div id="profile-container"></div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- KISAH CINTA (TIMELINE INTERAKTIF) -->
+        <section id="sec-story" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 space-y-8">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="text-center space-y-2">
+                    <h2 class="font-serif text-3xl font-bold text-amber-300">Kisah Cinta Kami</h2>
+                    <p class="text-rose-200/70 text-xs">Perjalanan Kasih</p>
+                </div>
+                
+                <div class="interactive-timeline relative pl-6 sm:pl-8 space-y-8 ml-2 sm:ml-4" id="story-container">
+                    <div class="timeline-line-bg"></div>
+                    <div class="timeline-line-progress" id="timelineProgress"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- RANGKAIAN ACARA -->
+        <section id="sec-acara" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 space-y-8">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="text-center space-y-2">
+                    <h2 class="font-serif text-3xl font-bold text-amber-300">Rangkaian Acara</h2>
+                    <p class="text-rose-200/70 text-xs">Waktu & Tempat Pelaksanaan</p>
+                </div>
+                <div id="schedule-container" class="grid sm:grid-cols-2 gap-6"></div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- GALERI FOTO -->
+        <section id="sec-galeri" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 space-y-8">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="text-center space-y-2">
+                    <h2 class="font-serif text-3xl font-bold text-amber-300">Galeri Foto</h2>
+                </div>
+                <div id="gallery-grid" class="grid grid-cols-2 gap-4"></div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- AMPLOP DIGITAL SECTION (ANIMASI 3D DARIDALAM AMPLOP) -->
+        <section id="sec-amplop" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 text-center space-y-6">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="space-y-2">
+                    <h2 class="font-serif text-3xl font-bold text-amber-300">Amplop Digital</h2>
+                    <p class="text-rose-200/80 text-xs">Doa restu Anda merupakan karunia terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, Anda dapat menyalurkannya melalui amplop di bawah ini:</p>
+                </div>
+
+                <!-- WRAPPER UTAMA AMPLOP INTERAKTIF -->
+                <div class="envelope-wrapper my-6" id="envelopeWrapper" onclick="toggleEnvelope()">
+                    <div class="sparkles-container" id="sparklesContainer"></div>
+
+                    <div class="envelope-box">
+                        <!-- Dinding Belakang Amplop -->
+                        <div class="envelope-back"></div>
+
+                        <!-- WADAH KARTU REKENING (Tersimpan 100% di Dalam) -->
+                        <div class="envelope-cards-stage" id="giftCardsContainer">
+                            <!-- Kartu Di-render dari javascript.js -->
+                        </div>
+
+                        <!-- Saku Depan Amplop -->
+                        <div class="envelope-pocket"></div>
+
+                        <!-- Lipatan Atas Amplop (Flap) -->
+                        <div class="envelope-flap">
+                            <div class="wax-seal">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-amber-300/80 italic mt-4 animate-pulse" id="envelopeHint">Klik amplop untuk membuka / menutup</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- RSVP & UCAPAN -->
+        <section id="sec-rsvp" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card p-6 sm:p-10 space-y-8">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="text-center space-y-2">
+                    <h2 class="font-serif text-3xl font-bold text-amber-300">Ucapan & Doa</h2>
+                    <p class="text-rose-200/70 text-xs">Konfirmasi Kehadiran & Kirim Pesan</p>
+                </div>
+
+                <form id="rsvp-form" class="space-y-3.5">
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-200 mb-1">Nama</label>
+                        <input type="text" id="input-name" required class="w-full bg-[#1f0d14] border border-amber-400/30 rounded-2xl px-3.5 py-2.5 text-rose-50 text-xs focus:outline-none focus:border-amber-400 transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-200 mb-1">Konfirmasi Kehadiran</label>
+                        <select id="input-status" class="w-full bg-[#1f0d14] border border-amber-400/30 rounded-2xl px-3.5 py-2.5 text-rose-50 text-xs focus:outline-none focus:border-amber-400 transition-all">
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-200 mb-1">Pesan / Ucapan</label>
+                        <textarea id="input-message" rows="3" required class="w-full bg-[#1f0d14] border border-amber-400/30 rounded-2xl px-3.5 py-2.5 text-rose-50 text-xs focus:outline-none focus:border-amber-400 transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-rose-500 via-pink-600 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-white font-bold rounded-2xl text-xs shadow-md transition-all hover:scale-[1.01]">Kirim Ucapan</button>
+                </form>
+
+                <div id="comments-container" class="space-y-3 max-h-72 overflow-y-auto pr-1"></div>
+            </div>
+        </section>
+
+        <!-- JEMBATAN ANTAR SECTION -->
+        <div class="section-bridge" data-aos="zoom-in" data-aos-duration="800">
+            <div class="floating-bridge-love"><i class="fa-solid fa-heart text-xs"></i></div>
+        </div>
+
+        <!-- UCAPAN TERIMA KASIH -->
+        <section id="sec-thanks" class="relative px-4 sm:px-6" data-aos="fade-up" data-aos-duration="1000">
+            <div class="relative z-10 w-full max-w-xl mx-auto neon-arch-card text-center p-8 sm:p-10 space-y-4">
+                <div class="floral-corner top-left"><i class="fa-solid fa-spa"></i></div>
+                <div class="floral-corner bottom-right"><i class="fa-solid fa-spa"></i></div>
+
+                <div class="flex items-center justify-center gap-2 text-amber-300">
+                    <i class="fa-solid fa-heart text-amber-300 text-sm"></i>
+                </div>
+                <h2 id="thanks-title" class="font-serif text-3xl sm:text-4xl font-bold text-amber-300 tracking-wide">Terima Kasih</h2>
+                <p id="thanks-message" class="text-rose-100/90 text-xs sm:text-sm leading-relaxed italic px-2 max-w-md mx-auto">
+                    Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada kami.
+                </p>
+                <div class="pt-4 space-y-1 border-t border-amber-400/20">
+                    <p id="thanks-subtext" class="text-[11px] text-amber-300 font-bold uppercase tracking-[0.2em]">Kami Yang Berbahagia,</p>
+                    <h3 id="thanks-couples" class="font-script text-4xl sm:text-5xl text-rose-200 leading-tight">Adzka &amp; Ina</h3>
+                    <p id="thanks-family" class="text-xs text-rose-200/70 font-semibold">Beserta Keluarga Besar</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 text-center bg-[#0e0508] text-xs text-rose-200/50 flex flex-col items-center justify-center space-y-2 border-t border-amber-400/10">
+            <p>Terima Kasih Atas Kehadiran &amp; Doa Restu Anda</p>
+            <div class="pt-1">
+                <span class="neon-credit">Created by Bocah Newbie</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- LIGHTBOX MODAL GALERI -->
+    <div id="gallery-modal" class="fixed inset-0 z-50 bg-[#14080b]/90 backdrop-blur-md hidden items-center justify-center p-4">
+        <button onclick="document.getElementById('gallery-modal').classList.add('hidden'); document.getElementById('gallery-modal').classList.remove('flex');" class="absolute top-6 right-6 text-rose-200 text-3xl hover:text-amber-300 transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <img id="modal-img" src="" class="max-w-full max-h-[85vh] rounded-2xl border-2 border-amber-400/40 shadow-2xl object-contain">
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Nomor rekening berhasil disalin!</div>
+
+    <!-- AOS JS Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="config.js"></script>
+    <script src="javascript.js"></script>
+</body>
+</html>

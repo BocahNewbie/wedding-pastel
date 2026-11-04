@@ -1,0 +1,484 @@
+/* Smooth Scroll Global */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar Soft Red & Gold */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #14080b;
+}
+::-webkit-scrollbar-thumb {
+    background: #38131d;
+    border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f43f5e;
+}
+
+/* BACKGROUND UTAMA */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #14080b;
+    color: #fdf2f4;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+
+h1, h2, h3, .font-serif {
+    font-family: 'Cinzel Decorative', 'Cinzel', serif;
+}
+
+.font-script {
+    font-family: 'Great Vibes', cursive;
+}
+
+/* KARTU ESTETIK FLORAL ARCH CARD */
+.neon-arch-card {
+    background: rgba(26, 12, 17, 0.94);
+    border: 1.5px solid rgba(251, 191, 36, 0.35);
+    border-radius: 2rem 0.5rem 2rem 0.5rem;
+    color: #fdf2f4;
+    position: relative;
+    box-shadow: 
+        0 25px 50px -15px rgba(0, 0, 0, 0.7),
+        0 0 25px rgba(244, 63, 94, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.neon-arch-card::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(251, 191, 36, 0.25);
+    border-radius: 1.75rem 0.35rem 1.75rem 0.35rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.neon-arch-card:hover {
+    border-color: rgba(251, 191, 36, 0.6);
+    box-shadow: 
+        0 30px 60px -12px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(251, 191, 36, 0.15);
+}
+
+/* ORNAMEN BUNGA DI SUDUT BOX */
+.floral-corner {
+    position: absolute;
+    color: rgba(251, 191, 36, 0.45);
+    font-size: 1.4rem;
+    z-index: 2;
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.floral-corner.top-left {
+    top: 12px;
+    left: 14px;
+    transform: rotate(-45deg);
+}
+
+.floral-corner.bottom-right {
+    bottom: 12px;
+    right: 14px;
+    transform: rotate(135deg);
+}
+
+/* ==========================================
+   MEKANISME AMPLOP DIGITAL INTERAKTIF SMOOTH
+   ========================================== */
+.envelope-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.envelope-box {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    margin: 0 auto;
+    border-radius: 12px;
+    transition: height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Wadah Membesar Lebih Tinggi Saat Amplop Terbuka */
+.envelope-wrapper.is-open .envelope-box {
+    height: 520px; /* Ditinggikan agar muat kartu yang terangkat di mobile */
+}
+
+@media (min-width: 640px) {
+    .envelope-wrapper.is-open .envelope-box {
+        height: 340px; /* Ditinggikan untuk tampilan 2 kolom desktop */
+    }
+}
+
+/* Dinding Belakang Amplop */
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    background: #1a0a10;
+    border-radius: 12px;
+    border: 1px solid rgba(251, 191, 36, 0.25);
+    z-index: 1;
+}
+
+/* WADAH KARTU REKENING (Tersimpan 100% di Dalam Saku) */
+.envelope-cards-stage {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2;
+    transform: translateY(100%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+}
+
+/* KARTU MELUNCUR KELUAR LEBIH TINGGI KE ATAS */
+.envelope-wrapper.is-open .envelope-cards-stage {
+    transform: translateY(-190px); /* Terangkat lebih tinggi di mobile */
+    opacity: 1;
+    pointer-events: auto;
+    transition-delay: 0.3s;
+}
+
+@media (min-width: 640px) {
+    .envelope-wrapper.is-open .envelope-cards-stage {
+        transform: translateY(-170px); /* Terangkat lebih tinggi di desktop */
+    }
+}
+
+/* Saku Depan Amplop */
+.envelope-pocket {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #2b0f19 0%, #1c0910 100%);
+    clip-path: polygon(0 35%, 50% 65%, 100% 35%, 100% 100%, 0 100%);
+    border-radius: 0 0 12px 12px;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+    z-index: 3;
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Penutup Lipatan Atas (Flap) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(180deg, #381320 0%, #2b0f19 100%);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.6s step-end;
+    z-index: 4;
+}
+
+/* Animasi Flap Membuka 180 Derajat */
+.envelope-wrapper.is-open .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), z-index 0.1s step-start;
+}
+
+/* Segel Lilin (Wax Seal) */
+.wax-seal {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 36px;
+    background: radial-gradient(circle, #fbbf24 0%, #d97706 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #14080b;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    transition: opacity 0.4s ease;
+}
+
+.envelope-wrapper.is-open .wax-seal {
+    opacity: 0;
+}
+
+/* Sparkles Emas Animasi */
+.sparkles-container {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.sparkle-particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #fbbf24;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fbbf24;
+    animation: sparkleFly 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes sparkleFly {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-120px) scale(0); opacity: 0; }
+}
+
+/* TIMELINE KISAH CINTA INTERAKTIF */
+.interactive-timeline {
+    position: relative;
+}
+
+.timeline-line-bg {
+    position: absolute;
+    left: -24px;
+    top: 10px;
+    bottom: 10px;
+    width: 2px;
+    background: rgba(251, 191, 36, 0.15);
+    border-radius: 9999px;
+}
+
+.timeline-line-progress {
+    position: absolute;
+    left: -24px;
+    top: 10px;
+    width: 2px;
+    height: 0%;
+    background: linear-gradient(to bottom, #fbbf24, #f43f5e);
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.8);
+    border-radius: 9999px;
+    transition: height 0.1s linear;
+}
+
+.timeline-dot.active-dot {
+    border-color: #fbbf24 !important;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.9);
+    transform: scale(1.2);
+}
+
+.timeline-dot.active-dot .dot-inner {
+    background-color: #fbbf24 !important;
+    opacity: 1 !important;
+}
+
+/* JEMBATAN / GARIS PENGHUBUNG ANTAR SECTION */
+.section-bridge {
+    position: relative;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-bridge::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(251, 191, 36, 0.4), rgba(244, 63, 94, 0.4));
+}
+
+.floating-bridge-love {
+    position: absolute;
+    background: #14080b;
+    border: 1px solid rgba(251, 191, 36, 0.5);
+    color: #fde047;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    box-shadow: 0 0 15px rgba(244, 63, 94, 0.3);
+    animation: floatLove 3s ease-in-out infinite;
+    z-index: 10;
+}
+
+@keyframes floatLove {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-5px) scale(1.1); }
+}
+
+/* EFEK TULISAN SOFT GOLD & ROSE */
+.neon-credit {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fda4af 0%, #fde047 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* KILAU TOMBOL HALUS */
+.btn-shimmer {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-shimmer::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        60deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.15) 50%,
+        transparent 70%
+    );
+    transform: rotate(30deg) translateX(-100%);
+    animation: shimmer 5s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: rotate(30deg) translateX(100%);
+    }
+}
+
+/* KARTU REKENING BANK */
+.gift-card {
+    background: rgba(31, 13, 20, 0.95);
+    border: 1.5px solid rgba(251, 191, 36, 0.35);
+    border-radius: 1.25rem;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.gift-card:hover {
+    border-color: rgba(251, 191, 36, 0.6);
+}
+
+.bank-badge {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fde047;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.account-number {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fdf2f4;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.25rem;
+    font-family: monospace;
+}
+
+.account-holder {
+    font-size: 0.75rem;
+    color: #fda4af;
+    margin-bottom: 1rem;
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    background: rgba(251, 191, 36, 0.08);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    color: #fde047;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-copy:hover {
+    background: #fde047;
+    color: #14080b;
+    border-color: transparent;
+}
+
+.btn-copy svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* TOMBOL MUSIK MENGAPUNG */
+.music-control-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(26, 12, 17, 0.95);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fde047;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+.music-control-btn:hover {
+    transform: scale(1.1);
+    background: #fde047;
+    color: #14080b;
+}
+
+.music-control-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+/* Toast Notification */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #fde047;
+    color: #14080b;
+    padding: 0.65rem 1.5rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(251, 191, 36, 0.3);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
